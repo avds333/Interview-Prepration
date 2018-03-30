@@ -1,0 +1,3 @@
+//Contains getters
+class GettersAndSetters
+{
