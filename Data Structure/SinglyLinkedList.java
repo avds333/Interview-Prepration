@@ -18,7 +18,8 @@ class SinglyLinkedList
     {
         while(true)
         {
-            System.out.println("\n1.Create Linked List\n2.Add element at beginning.\n3.Add element at end.\n4.Display.\n5.Search.\n6.Sort.\n7.Reverse.\n");
+             System.out.println("\n1.Create Linked List\n2.Add element at beginning.\n3.Add element at end.\n4.Display.\n5.Search." +
+			"\n6.Sort.\n7.Reverse.\n8. Delete Element.\n9.Exit");
             int option=Integer.parseInt(br.readLine());
             switch(option)
             {
@@ -44,7 +45,10 @@ class SinglyLinkedList
                     reverse();
                     break;
               case 8:
-                    System.exit(0);
+                    delete();
+					break;
+			  case 9:
+					System.exit(0);
               default:
                     System.out.println("Invalid input.");
                     break;
@@ -169,6 +173,57 @@ class SinglyLinkedList
             temp=temp.next;
         }
     }
+    public void delete() throws Exception 
+	{
+		Node point = start ;
+		int srchdata=0 ;
+		int flag=0 ;
+		System.out.println("Enter the data to remove: ");
+		srchdata = Integer.parseInt(br.readLine()) ;
+		for( Node i = point ; point != null ; point = point.next )
+		{
+			if(srchdata == point.data )
+			{
+				flag++ ;
+				break ; 
+			}
+		}
+		// Re-Initializing point variable.
+		point = start ;
+		if(flag!=0)
+		{
+			// Logic for  : if element is in the middle of two elements. 
+			
+			Node storePrev = null ; // variable for storing previous node address , previous to searched data.
+			Node storeNext = null ; // variable for storing next node address , next to searched data.
+			while( point.next.next != null )
+			{
+				if(point.next.data == srchdata )
+				{
+				//point.next in below line will give you the searched element.
+				//point.next will give the element before the searched element
+				storePrev = point ;
+				storeNext = point .next .next ;
+				//Performing deletion of the element.
+				point.next = point.next.next ;
+				start = point;
+				break;
+				
+			//	System.out.println("Displaying data at point "+storePrev.data);
+			//	System.out.println("Displaying data at point.next.next "+storeNext.data);
+				}
+				point = point.next ;
+			}
+		}
+		else
+		{
+			System.out.println("Element doesn't exist.") ;
+		}
+		System.out.println("Element deleted successfully.");
+		display();
+		
+	}
+    
     Node sort()
     {
         System.out.println("Beginning the sort algorithmn.");
