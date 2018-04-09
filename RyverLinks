@@ -1,0 +1,74 @@
+Maven Link 
+
+https://maven.apache.org/guides/getting-started/index.html
+
+https://stackoverflow.com/questions/34038141/check-m2-home-environment-variable-and-mvn-script-match
+
+
+
+maven.apache.org. Maven is a build automation tool used primarily for Java projects. In Yiddish, the word maven means 
+
+"accumulator of knowledge". Maven addresses two aspects of building software: first, it describes how software is built, and 
+
+second, it describes its dependencies.
+
+What is the use of POM XML file in a project in Eclipse?
+
+A Project Object Model or POM is the fundamental unit of work in Maven. It is an XML file that contains information about 
+
+the project and configuration details used by Maven to build the project. It contains default values for most projects.
+
+What is an artifact in Maven?
+
+An artifact is a file, usually a JAR, that gets deployed to a Maven repository. A Maven build produces one or more 
+
+artifacts, such as a compiled JAR and a "sources" JAR. Each artifact has a group ID (usually a reversed domain name, like 
+
+com.example.foo), an artifact ID (just a name), and a version string.
+
+What is a snapshot version?
+
+A snapshot version in Maven is one that has not been released. The idea is that before a 1.0 release (or any other release) 
+
+is done, there exists a 1.0-SNAPSHOT . That version is what might become 1.0 . It's basically " 1.0 under development".
+
+
+
+%%%%
+https://maven.apache.org/guides/introduction/introduction-to-the-standard-directory-layout.html
+%%%%
+
+%%%%
+https://crunchify.com/how-to-create-new-simple-maven-project-in-eclipse-without-archtype-detailed-steps-included/
+%%%%
+
+*****************************************************
+Upcasting and downcasting
+__________________________
+http://javainsimpleway.com/upcasting-and-downcasting-in-java/
+
+https://stackoverflow.com/questions/23414090/what-is-the-difference-between-up-casting-and-down-casting-with-respect-to-
+
+class
+
+***************************************************
+Auto Boxing and unboxing
+
+https://docs.oracle.com/javase/tutorial/java/data/autoboxing.html
+
+***************************************************
+https://www.guru99.com/java-interface.html
+**************************************************
+http://adnjavainterview.blogspot.in/2015/10/difference-between-loose-coupling-and.html
+https://www.geeksforgeeks.org/coupling-in-java/
+***************************************************
+https://www.javatpoint.com/java-util-calendar
+****************************************************
+http://www.vogella.com/tutorials/JUnit/article.html
+http://www.java2novice.com/junit-examples/
+http://javarevisited.blogspot.com/2015/02/simple-junit-example-unit-tests-for-linked-list-java.html#ixzz5BlxqdlFs
+http://www.ece.uvic.ca/~shsaad/seng426/resources/Lab%20Slides/Lab3-SENG09.pdf
+https://www.guru99.com/junit-tutorial.html
+***************************************************
+http://www.java-samples.com/showtutorial.php?tutorialid=280
+http://www.yegor256.com/2015/08/18/multiple-return-statements-in-oop.html
