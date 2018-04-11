@@ -1,0 +1,152 @@
+public class Student 
+{
+ private	String name ; 
+ private	int age ; 
+ private	double fees ;
+ Student( String name , int age , double fees )
+ {
+ 	this.name = name ; 
+ 	this.age = age ;
+ 	this.fees = fees ;
+ }
+
+ public String getName() {
+	return name;
+}
+public void setName(String name) {
+	this.name = name;
+}
+public int getAge() {
+	return age;
+}
+public void setAge(int age) {
+	this.age = age;
+}
+public double getFees() {
+	return fees;
+}
+public void setFees(double fees) {
+	this.fees = fees;
+}
+
+@Override
+public String toString() {
+	return "name=" + name + ", age=" + age + ", fees=" + fees ;
+}
+
+}
+******************
+package com.aricent;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+public class UI {
+	private String srchItem ;
+	private boolean flag ;
+	private boolean flag2 ;
+	private String delItem ;
+	List< Student > li ;
+	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+	public void dataStorage()
+	{
+	    li = new ArrayList< Student >();
+		Student s1 = new Student("A",23,23.3);
+		Student s2 = new Student("B",19,24.3);
+		Student s3 = new Student("C",53,90.3);
+		li.add(s1);
+		li.add(s2);
+		li.add(s3);
+		System.out.println("Displaying Record: ");
+		for(Student s : li)
+		{
+			System.out.println(s);
+		}
+		System.out.println("Enter the element to search: ");
+		try{
+			srchItem = br.readLine();
+			for( int i = 0 ; i < li.size() ; i++  )
+			{
+				if( li.get(i).getName().equals(srchItem) )
+				{
+					System.out.println("Details are : "+li.get(i).getName()+" "+li.get(i).getAge()+" "+li.get(i).getFees());
+					flag = true ;
+				}
+			}
+			if( !flag )
+			{
+				System.out.println("Element does'nt exist !!!!");
+			}
+			System.out.println("Enter element to delete :");
+			delItem = br.readLine() ; 
+			for( int i = 0 ; i < li.size() ; i++  )
+			{
+				if( li.get(i).getName().equals(delItem) )
+				{
+					//System.out.println("Details are : "+li.get(i).getName()+" "+li.get(i).getAge()+" "+li.get(i).getFees());
+					li.remove(li.get(i));
+					System.out.println("Delete Successfully!!!!!");
+					//System.out.println(li.get(i))
+					flag2 = true ;
+				}
+			}
+			if( !flag2 )
+			{
+				System.out.println("Element does'nt exist !!!!");
+			}
+			System.out.println("Displaying Record: ");
+			for(Student s : li)
+			{
+				System.out.println(s);
+			}
+			
+		}catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+			
+	}
+	public void sortOptions()
+	{
+		while(true)
+		{
+			try{
+			System.out.println("1.Sort by name\n2.Sort by fees\n");
+			int choice = Integer.parseInt(br.readLine());
+			switch( choice )
+			{
+			case 1:
+				 System.out.println("Details are:");
+				 ((Object) li).sort();
+				 
+			}
+			}catch(Exception e)
+			{
+				e.printStackTrace();
+			}
+		}
+	}
+	public static void main(String[] args) 
+	{
+		UI ui = new UI() ;
+		ui.dataStorage();
+		ui.sortOptions();
+	}
+
+}
+**********************
+public class StudentSortByName implements Comparable<Student> 
+{
+	private String name ;
+	//private int age ; 
+	//private double fees ;
+	public int compareTo(Student stu) 
+	{
+		// TOD+O Auto-generated method stub
+		return name.compareTo(stu.getName());
+	}
+	
+}
