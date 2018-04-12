@@ -102,8 +102,9 @@ public class UI {
 				 display(li);
 				 break ;
 			case 2:
-				
 				 li.sort(salaryComprator);
+				 //Below comment is for JDK7
+				 //Collections.sort(li,salaryComprator);
 				 display(li);
 				 break ;
 			default:
