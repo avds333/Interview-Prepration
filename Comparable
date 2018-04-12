@@ -1,49 +1,17 @@
-public class Student 
-{
- private	String name ; 
- private	int age ; 
- private	double fees ;
- Student( String name , int age , double fees )
- {
- 	this.name = name ; 
- 	this.age = age ;
- 	this.fees = fees ;
- }
-
- public String getName() {
-	return name;
-}
-public void setName(String name) {
-	this.name = name;
-}
-public int getAge() {
-	return age;
-}
-public void setAge(int age) {
-	this.age = age;
-}
-public double getFees() {
-	return fees;
-}
-public void setFees(double fees) {
-	this.fees = fees;
-}
-
-@Override
-public String toString() {
-	return "name=" + name + ", age=" + age + ", fees=" + fees ;
-}
-
-}
-******************
 package com.aricent;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
+import java.util.Iterator;
 import java.util.List;
 
+/**
+ * @author DIABLO
+ *
+ */
 public class UI {
 	private String srchItem ;
 	private boolean flag ;
@@ -56,10 +24,21 @@ public class UI {
 	    li = new ArrayList< Student >();
 		Student s1 = new Student("A",23,23.3);
 		Student s2 = new Student("B",19,24.3);
-		Student s3 = new Student("C",53,90.3);
+		Student s3 = new Student("C",53,940.3);
+		Student s4 = new Student("D",73,690.3);
+		Student s5 = new Student("E",93,5690.3);
+		Student s6 = new Student("F",13,6490.3);
+		Student s7 = new Student("G",63,3490.3);
+		Student s8 = new Student("H",43,3290.3);
+		li.add(s6);
+		li.add(s7);
+		li.add(s8);
 		li.add(s1);
 		li.add(s2);
 		li.add(s3);
+		li.add(s4);
+		li.add(s5);
+		
 		System.out.println("Displaying Record: ");
 		for(Student s : li)
 		{
@@ -119,9 +98,16 @@ public class UI {
 			switch( choice )
 			{
 			case 1:
-				 System.out.println("Details are:");
-				 ((Object) li).sort();
-				 
+				 Collections.sort(li);
+				 display(li);
+				 break ;
+			case 2:
+				
+				 li.sort(salaryComprator);
+				 display(li);
+				 break ;
+			default:
+				System.out.println("Invalid value.");
 			}
 			}catch(Exception e)
 			{
@@ -129,24 +115,74 @@ public class UI {
 			}
 		}
 	}
+	public static Comparator<Student> salaryComprator = new Comparator<Student>()
+	{
+		public int compare(Student stu1 , Student stu2)
+		{
+			Double fees1 = stu1.getFees();
+			Double fees2 = stu2.getFees();
+			return fees1.compareTo(fees2);
+		}
+	};
+	public void display(List<Student> li)
+	{
+		System.out.println("After sorting operation.");
+		Iterator<Student> i = li.iterator();
+		while( i.hasNext() )
+		{
+			System.out.println(i.next());
+		}
+	}
+	
 	public static void main(String[] args) 
 	{
 		UI ui = new UI() ;
 		ui.dataStorage();
 		ui.sortOptions();
 	}
-
 }
-**********************
-public class StudentSortByName implements Comparable<Student> 
-{
-	private String name ;
-	//private int age ; 
-	//private double fees ;
-	public int compareTo(Student stu) 
+
+*********************************************************************************************************88
+package com.aricent;
+	public class Student implements Comparable <Student>
 	{
-		// TOD+O Auto-generated method stub
-		return name.compareTo(stu.getName());
+	 private	String name ; 
+	 private	int age ; 
+	 private	double fees ;
+	 Student( String name , int age , double fees )
+	 {
+		super();
+	 	this.name = name ; 
+	 	this.age = age ;
+	 	this.fees = fees ;
+	 }
+
+	public String getName() {
+		return name;
 	}
-	
+	public void setName(String name) {
+		this.name = name;
+	}
+	public int getAge() {
+		return age;
+	}
+	public void setAge(int age) {
+		this.age = age;
+	}
+	public double getFees() {
+		return fees;
+	}
+	public void setFees(double fees) {
+		this.fees = fees;
+	}
+
+	@Override
+	public String toString() {
+		return "name=" + name + ", age=" + age + ", fees=" + fees ;
+	}
+	// Over-riding compareTo() method
+	public int compareTo( Student stu )
+	{
+		return name.compareToIgnoreCase(stu.getName());
+	}
 }
