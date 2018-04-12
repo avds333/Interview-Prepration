@@ -105,6 +105,8 @@ public class UI {
 				 li.sort(salaryComprator);
 				 //Below comment is for JDK7
 				 //Collections.sort(li,salaryComprator);
+				 //Use below statement if you making seperate class for comparater
+				 Collections.sort(li.new SalaryComparater());
 				 display(li);
 				 break ;
 			default:
@@ -116,7 +118,7 @@ public class UI {
 			}
 		}
 	}
-	public static Comparator<Student> salaryComprator = new Comparator<Student>()
+	/*public static Comparator<Student> salaryComprator = new Comparator<Student>()
 	{
 		public int compare(Student stu1 , Student stu2)
 		{
@@ -124,7 +126,7 @@ public class UI {
 			Double fees2 = stu2.getFees();
 			return fees1.compareTo(fees2);
 		}
-	};
+	};*/
 	public void display(List<Student> li)
 	{
 		System.out.println("After sorting operation.");
@@ -185,5 +187,20 @@ package com.aricent;
 	public int compareTo( Student stu )
 	{
 		return name.compareToIgnoreCase(stu.getName());
+	}
+}
+***************************
+package com.aricent;
+
+import java.util.Comparator;
+
+public class SalaryComparator implements Comparator<Student> 
+
+{
+	public int compare(Student stu1 , Student stu2)
+	{
+		Double fees1 = stu1.getFees();
+		Double fees2 = stu2.getFees();
+		return fees1.compareTo(fees2);
 	}
 }
