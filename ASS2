@@ -1,0 +1,206 @@
+package com.aricent;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
+
+public class Company extends Employee
+{
+	private static int empCount = 0;
+	List<Employee> employees  = new ArrayList<Employee>();
+	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+	public int getEmpCount() 
+	{
+		return empCount;
+	}
+	public int addEmployee(Employee e)
+	{
+		try
+		{
+			System.out.println("Enter Employee Id");			
+		    e.setEmpId(Integer.parseInt(br.readLine()));
+			System.out.println("Enter Employee name : ");
+			e.setEmpName(br.readLine());
+			System.out.println("Enter address");
+			e.setAddress(br.readLine());
+			System.out.println("Enter contact no: ");
+			e.setContactNo(Long.parseLong(br.readLine()));
+			employees.add(e);
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+		}
+		return ++empCount;
+	}
+	public int countTotalEmployees()
+	{
+		return empCount ;
+	}
+	public int deleteEmployee(String name )
+	{
+		System.out.println("Checking the functionality:");
+		boolean flag = false ; 
+//		if( name != null )
+//		{
+//			for( Employee e : employees )
+//			{
+//				if( e.getEmpName().equalsIgnoreCase(name)  )
+//				{
+//					employees.remove(e);
+//				}
+//			}
+//		}
+		//This logic only works till JDK 1.7
+		for(int i=0 ; i < employees.size() ; i++)
+		{
+			System.out.println( employees.get(i).getEmpName() );
+			if( employees.get(i).getEmpName().equalsIgnoreCase(name)  )
+			{
+				employees.remove(i);
+				System.out.println("Employee found and deleting.");
+				flag = true ; 
+			}
+		}
+		if( !flag)
+		{
+			return -1 ;
+		}
+		return --empCount;
+	}
+	public void displayEmployeeDetails()
+	{
+		if( employees.size() > 0 && employees != null )
+		{
+//			for( int i = 0 ; i < employees.size() ; i++ )
+//			{
+//				System.out.println()
+//			}
+			for(Employee emp : employees)
+			{
+				System.out.println(emp.getEmpId()+" | "+emp.getEmpName()+" | "+emp.getContactNo()+emp.getAddress()+" |");
+			}
+		}
+		else
+		{
+			System.out.println("No employee to show.");
+		}
+	}
+}
+*******************************************
+*******************************************
+*******************************************
+package com.aricent;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
+public class Employee 
+{
+	int empId ; 
+	String empName ; 
+	String address ; 
+	long contactNo ;
+	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+	public int getEmpId() {
+		return empId;
+	}
+	public void setEmpId(int empId) {
+		this.empId = empId;
+	}
+	public String getEmpName() {
+		return empName;
+	}
+	public void setEmpName(String empName) {
+		this.empName = empName;
+	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	public long getContactNo() {
+		return contactNo;
+	}
+	public void setContactNo(long contactNo) {
+		this.contactNo = contactNo;
+	}
+	
+}
+****************************
+****************************
+****************************
+package com.aricent;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
+
+public class UI {
+	
+	private int  empId;
+	private int count ;
+	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+	Employee e ;
+	Company  comp = new Company();
+	public void userChoices()
+	{
+		try{
+			while(true)
+			{
+				System.out.println("\n1.Add employee.\n2.Count Total Employees\n"
+				+"3.Delete Employees\n"+"4.Display Employee Details\n"
+				+"5.Exit\n");
+				System.out.print("Enter choice = \t");
+				int input = Integer.parseInt(br.readLine());
+				switch(input)
+				{
+					case 1:
+						// Note the diffrence:NullPointerException
+						e = new Employee();
+						count =comp.addEmployee(e);
+						System.out.println("\nDetails inserted successfully!!!!\n");
+						System.out.println("Total no. of employees are:   "+count);
+						break;
+					case 2:
+						System.out.println("Total no. of employees are :"+comp.countTotalEmployees());
+						break;
+					case 3:
+						System.out.println("Enter the name of employee to delete: ");
+					    count =	comp.deleteEmployee(br.readLine());
+						if(count == -1)
+						{
+							System.out.println("\nEmployee deosnt exist !!!\n");
+						}
+						else
+						{
+							System.out.println("\nEmployee deleted successfully from system\n");
+						}
+						break ;
+					case 4:
+						comp.displayEmployeeDetails();
+						break ;
+					case 5:
+						System.exit(0);
+					default:
+						System.out.println("Invalid choice:");
+				}
+			}	
+		}catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+	public static void main(String[] args) 
+	{
+		UI ui = new UI();
+		ui.userChoices();
+	}
+
+}
