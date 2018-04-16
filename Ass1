@@ -1,0 +1,67 @@
+package com.aricent;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.List;
+import java.util.ArrayList; 
+import java.util.ListIterator;
+public class EvenNumbers 
+{
+	List<Integer> li = new ArrayList<Integer>();
+	List<Integer> cloneLi = new ArrayList<Integer>();
+	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+	int user ;
+	public List<Integer> userInput()
+	{
+		try{
+			System.out.println("Enter the upper bound :");
+			user = Integer.parseInt(br.readLine());
+			for( int i = 2 ; i <= user ; i++ )
+			{
+					li.add(i);
+			}
+			System.out.println("Insert operation completed.");
+			printEvenIntegers( li );
+		}catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		return li ;
+	}
+	public void printEvenIntegers(List<Integer> li)
+	{
+		try{
+			for( int i=2 ; i <= user ; i++ )
+			{
+				if( i % 2 ==0 )
+				{
+					cloneLi.add(i);
+					//System.out.println(li.get(i));
+				}
+			}
+			System.out.println("Displaying elements");
+			display(cloneLi);
+		}catch(Exception e)
+		{
+			e.printStackTrace();;
+		}
+	}
+	public void display( List<Integer> li )
+	{
+		ListIterator<Integer> itera = li.listIterator() ; 
+		while( itera.hasNext() )
+		{
+			System.out.println( itera.next() );
+		}
+		System.out.println("Displaying in reverse: ");
+		while(itera.hasPrevious())
+		{
+			System.out.println( itera.previous() );
+		}
+	}
+	public static void main(String[] args) 
+	{	
+		EvenNumbers en = new EvenNumbers();
+		en.userInput();
+	}
+}
