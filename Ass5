@@ -1,0 +1,23 @@
+package com.aricent;
+
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
+
+public class MainClass {
+//Difference between hashmap and hashset
+	HashMap< Integer , String > hm = new HashMap<Integer , String>();
+	// Incomplete assignment
+	public void insertDetails()
+	{
+		hm.put(102, "Obama");
+		hm.put(103, "Will Smith");
+		hm.put(104, "Angila Jolie");
+		hm.put(105, "Cameron Diaz");
+	}
+	public static void main(String[] args) 
+	{	
+		MainClass mc = new MainClass();
+		mc.insertDetails();
+	}
+}
